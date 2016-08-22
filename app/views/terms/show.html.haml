@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @term.name
+%p
+  %b Defition:
+  = @term.defition
+%p
+  %b Author:
+  = @term.author
+%p
+  %b Category:
+  = @term.category_id
+%p
+  %b User:
+  = @term.user_id
+
+= link_to 'Edit', edit_term_path(@term)
+\|
+= link_to 'Back', terms_path
