@@ -62,13 +62,13 @@ class TermsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_term
-      @term = Term.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_term
+    @term = Term.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def term_params
-      params.require(:term).permit(:name, :defition, :author, :category_id, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def term_params
+    params.require(:term).permit(:name, :defition, :author, :category_id, :user_id)
+  end
 end
