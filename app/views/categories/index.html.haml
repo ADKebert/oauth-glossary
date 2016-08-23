@@ -1,25 +1,18 @@
-%h1 Listing categories
+%h1 Categories
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Subject area
-      %th User
-      %th
-      %th
-      %th
-
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td= category.name
-        %td= category.subject_area
-        %td= category.user_id
-        %td= link_to 'Show', category
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+%ul.list-group
+  - @categories.each do |category|
+    %li.list-group-item
+      %a{ href: "/categories/#{category.id}" }
+        = category.name
+      - if category.owned_by_user?(current_user)
+        .btn-group.btn-group-xs
+          %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
+            = link_to  edit_category_path(category) do
+              %span.glyphicon.glyphicon-pencil
+          %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
+            = link_to  category, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+              %span.glyphicon.glyphicon-trash
 %br
 
 = link_to 'New Category', new_category_path
