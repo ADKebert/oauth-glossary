@@ -19,4 +19,9 @@ class ApplicationController < ActionController::Base
   def authenticate!
     redirect_to login_path unless logged_in?
   end
+
+  protected
+  def authorize!(object, asking_user)
+    redirect_to action: :index unless object.owned_by_user?(asking_user)
+  end
 end

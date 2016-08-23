@@ -1,6 +1,6 @@
 class TermsController < ApplicationController
   before_action :set_term, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate!, only: [:new, :edit, :create, :update, :destroy]
   # GET /terms
   # GET /terms.json
   def index
@@ -15,16 +15,20 @@ class TermsController < ApplicationController
   # GET /terms/new
   def new
     @term = Term.new
+    @categories = Category.all.order(:name)
   end
 
   # GET /terms/1/edit
   def edit
+    authorize!(set_term, current_user)
+    @categories = Category.all.order(:name)
   end
 
   # POST /terms
   # POST /terms.json
   def create
     @term = Term.new(term_params)
+    @term.user = current_user
 
     respond_to do |format|
       if @term.save
@@ -40,6 +44,7 @@ class TermsController < ApplicationController
   # PATCH/PUT /terms/1
   # PATCH/PUT /terms/1.json
   def update
+    authorize!(set_term, current_user)
     respond_to do |format|
       if @term.update(term_params)
         format.html { redirect_to @term, notice: 'Term was successfully updated.' }
@@ -54,6 +59,7 @@ class TermsController < ApplicationController
   # DELETE /terms/1
   # DELETE /terms/1.json
   def destroy
+    authorize!(set_term, current_user)
     @term.destroy
     respond_to do |format|
       format.html { redirect_to terms_url, notice: 'Term was successfully destroyed.' }
@@ -69,6 +75,6 @@ class TermsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def term_params
-    params.require(:term).permit(:name, :definition, :author, :category_id, :user_id)
+    params.require(:term).permit(:name, :definition, :author, :category_id)
   end
 end

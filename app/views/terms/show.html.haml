@@ -11,11 +11,9 @@
   = @term.author
 %p
   %b Category:
-  = @term.category_id
-%p
-  %b User:
-  = @term.user_id
+  = @term.category.name
 
-= link_to 'Edit', edit_term_path(@term)
-\|
+- if logged_in?
+  = link_to 'Edit', edit_term_path(@term)
+  \|
 = link_to 'Back', terms_path

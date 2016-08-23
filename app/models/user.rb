@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :terms
+  has_many :categories
 
   def self.from_omniauth(authentication_data)
     user = User.where(provider: authentication_data['provider'],

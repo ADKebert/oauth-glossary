@@ -1,29 +1,16 @@
 %h1 Listing terms
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Definition
-      %th Author
-      %th Category
-      %th User
-      %th
-      %th
-      %th
-
-  %tbody
-    - @terms.each do |term|
-      %tr
-        %td= term.name
-        %td= term.definition
-        %td= term.author
-        %td= term.category_id
-        %td= term.user_id
-        %td= link_to 'Show', term
-        %td= link_to 'Edit', edit_term_path(term)
-        %td= link_to 'Destroy', term, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+%ul.list-group
+  - @terms.each do |term|
+    %li.list-group-item
+      %a{ href: "/terms/#{term.id}" }
+        = term.name
+      - if term.owned_by_user?(current_user)
+        .btn-group.btn-group-xs
+          %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
+            = link_to 'Edit', edit_term_path(term)
+          %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
+            = link_to 'Delete', term, :method => :delete, :data => { :confirm => 'Are you sure?' }
 %br
 
 = link_to 'New Term', new_term_path

@@ -6,20 +6,19 @@
         - @term.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .form-group
     = f.label :name
-    = f.text_field :name
-  .field
+    = f.text_field :name, class: "form-control"
+  .form-group
     = f.label :definition
-    = f.text_field :definition
-  .field
+    = f.text_area :definition, class: "form-control"
+  .form-group
     = f.label :author
-    = f.text_field :author
-  .field
-    = f.label :category_id
-    = f.number_field :category_id
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .actions
-    = f.submit 'Save'
+    = f.text_field :author, class: "form-control"
+  - if @categories
+    .form-group
+      - @categories.each do |category|
+        = f.label category.name, class: "control-label"
+        = f.radio_button(:category_id, "#{category.id}")
+  .form-group
+    = f.submit 'Save', class: "btn btn-primary"

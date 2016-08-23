@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   # Aliasing session stuff
   get '/login'  => 'session#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  post '/login' => 'session#create'
+  get '/logout' => 'session#destroy'
 
   resources :categories
   resources :terms
