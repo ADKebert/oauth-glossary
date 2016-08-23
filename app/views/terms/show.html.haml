@@ -13,7 +13,11 @@
   %b Category:
   = @term.category.name
 
-- if logged_in?
-  = link_to 'Edit', edit_term_path(@term)
-  \|
-= link_to 'Back', terms_path
+.btn-group.btn-group-xs
+  - if @term.owned_by_user?(current_user)
+    %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
+      = link_to 'Edit', edit_term_path(@term)
+    %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
+      = link_to 'Delete', @term, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
+    = link_to 'Back', terms_path
