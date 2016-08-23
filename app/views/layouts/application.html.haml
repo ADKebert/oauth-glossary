@@ -21,9 +21,9 @@
           / Collect the nav links, forms, and other content for toggling
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %ul.nav.navbar-nav
-              %li.active
+              %li{ class: class_for_controller("terms") }
                 = link_to 'Terms', terms_path
-              %li
+              %li{ class: class_for_controller("categories") }
                 = link_to 'Categories', categories_path
 
             %form.navbar-form.navbar-right{ action: "/terms" }
