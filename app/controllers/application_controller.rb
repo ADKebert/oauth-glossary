@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  # Check if an object is owned by the user
   def authorize!(object, asking_user)
     redirect_to action: :index unless object.owned_by_user?(asking_user)
   end
