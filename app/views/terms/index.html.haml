@@ -8,9 +8,11 @@
       - if term.owned_by_user?(current_user)
         .btn-group.btn-group-xs
           %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
-            = link_to 'Edit', edit_term_path(term)
+            = link_to  edit_term_path(term) do
+              %span.glyphicon.glyphicon-pencil
           %button.btn.btn-default{"aria-label" => "Left Align", :type => "button"}
-            = link_to 'Delete', term, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            = link_to  term, :method => :delete, :data => { :confirm => 'Are you sure?' } do
+              %span.glyphicon.glyphicon-trash
 %br
 
 = link_to 'New Term', new_term_path

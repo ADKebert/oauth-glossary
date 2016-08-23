@@ -17,6 +17,9 @@
  @import "_variables";
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ // social buttons
+ @import "font-awesome";
+ @import "bootstrap_social";
 
  body {
    padding: 70px;

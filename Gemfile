@@ -35,6 +35,7 @@ gem 'haml-rails'
 # Bootstrap
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem "font-awesome-rails"
 
 # Authentication via oauth
 gem 'omniauth'
